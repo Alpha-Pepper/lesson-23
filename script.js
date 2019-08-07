@@ -22,17 +22,14 @@ function dayOfTheWeek(date) {
 let y = new Date(2019, 7, 31);
 console.log(dayOfTheWeek(y));
 
-
-let d = prompt('Введите дату рождения 1990-10-01', '');
-function birthDays(dateOfBirthDay) {
-    let м = new Date(Date.parse(dateOfBirthDay))
-    let g = new Date();
-    м.setFullYear(+g.getFullYear());
-    if (м <= g) {
-        м.setFullYear(+м.getFullYear() + 1);
-      }
-    let ms = 24*60*60*1000;
-    let h =  Math.round((+м - g) / ms);
-    return alert(h  + ' дней до вашего дня рождения');
-}
-console.log(birthDays(d));
+function daysToBirthday(){
+    let birthData = prompt('Введите дату рождения в формате ГГГГ-ММ-ДД');
+    let today = new Date();
+    let birthday = new Date(Date.parse(birthData));
+    let data = birthday.setFullYear(today.getFullYear());
+    if(data > today){
+        birthday.setFullYear(+today.getFullYear());
+    }
+    return Math.round((birthday.getTime()-today.getTime())/(24*60*60*1000));
+};
+alert(daysToBirthday() + ' дней до дня рождения');
